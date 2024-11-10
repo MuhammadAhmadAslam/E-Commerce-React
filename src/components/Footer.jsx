@@ -5,6 +5,7 @@ import { Tooltip } from "bootstrap";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaWhatsapp } from "react-icons/fa";
 const Footer = () => {
 	const [currentYear, setCurrentYear] = useState(null);
 
@@ -184,7 +185,7 @@ const Footer = () => {
 											fontSize: "28px"
 										}}
 									>
-										<FaSquareXTwitter />
+										<FaWhatsapp  style={{ color: "#25D366" }}/>
 									</a>
 								</li>
 							</ul>

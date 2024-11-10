@@ -33,7 +33,7 @@ import LatestProduct from "./pages/LatestProduct";
 import TrendingProducts from "./pages/TrendingProducts";
 import Header from "./components/Header";
 import SingleCategoryDetail from "./pages/SingleCategoryDetails";
-
+import Blog from "./pages/Blog";
 
 function App() {
 	// Get current location
@@ -59,6 +59,7 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/collection" element={<Collection />} />
 					<Route path="/about" element={<About />} />
+					<Route path="/blog" element={<Blog />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/admin-panel" element={<AdminPanel />} />
 					<Route path="dashboard/admin" element={<Dashboard />} />

@@ -2,6 +2,7 @@ import React from 'react'
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaWhatsapp } from "react-icons/fa";
 const Header = () => {
        return (
               <header
@@ -67,7 +68,7 @@ const Header = () => {
 											fontSize: "28px"
 										}}
 									>
-										<FaSquareXTwitter />
+										<FaWhatsapp  style={{ color: "#25D366" }}/>
 									</a>
               </div>
             </header>
