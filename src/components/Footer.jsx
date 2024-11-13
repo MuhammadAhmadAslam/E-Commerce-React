@@ -109,7 +109,7 @@ const Footer = () => {
 									textDecoration: "none",
 									paddingBottom: "10px",
 									marginBottom: "2px"
-								}}>+1-000-000-0000</li>
+								}}><a href="telto:03202279315" style={{textDecoration: "none" , color: "white"}}>03202279315</a></li>
 								<li style={{
 									color: "white",
 									textDecoration: "none",
@@ -124,10 +124,10 @@ const Footer = () => {
 											paddingBottom: "10px",
 											marginBottom: "2px"
 										}}
-										href="mailto:demo@gmail.com"
+										href="mailto:info@stopsnbuy.com"
 										title="get in touch"
 									>
-										demo@gmail.com
+										info@stopsnbuy.com
 									</a>
 								</li>
 								<li style={{

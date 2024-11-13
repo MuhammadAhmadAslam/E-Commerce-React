@@ -44,31 +44,53 @@ const MixedAutoSlider = () => {
 
   return (
     <section
+    style={{
+      backgroundImage: `url(${mainBanner})`,
+      height: "60vh",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      position: "relative",
+      display: "flex",
+      justifyContent: "center", // Align to the right
+      alignItems: "flex-start",
+      flexDirection: "column",
+      paddingRight: "2rem", // Add padding for spacing from the edge
+      textAlign: "left",
+      paddingLeft: "2rem",
+    }}
+  >
+    <div style={{ zIndex: 1, color: "white" }}>
+      <h1 style={{ margin: 0 }}>
+        Shop Your Essentials, Anytime, Anywhere
+      </h1>
+      <p style={{ marginTop: "0.5rem" , textAlign: "left"}}>
+        From daily basics to exclusive finds, discover everything you need at unbeatable prices!
+      </p>
+      <Link to="/collection" style={{
+        marginTop: "2rem",
+        padding: "0.5rem 1rem",
+        color: "white",
+        backgroundColor: "#207DFF", // Adjust color as needed
+        border: "none",
+        cursor: "pointer",
+        textDecoration: "none",
+      }}>
+        Shop Now
+      </Link>
+    </div>
+    <div
       style={{
-        backgroundImage: `url(${mainBanner})`,
-        height: "60vh",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        position: "relative",
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "center",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        position: "absolute",
+        top: 0,
+        left: 0,
       }}
-    >
-      <div
-        className="absolute"
-        style={{
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          position: "absolute",
-          top: 0,
-          left: 0,
-        }}
-      ></div>
-      <button style={{ zIndex: 1 , border: "none"}}>Shop Now</button>
-    </section>
+    ></div>
+  </section>
+  
   );
 };
 
