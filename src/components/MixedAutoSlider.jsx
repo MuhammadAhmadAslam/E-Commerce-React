@@ -71,7 +71,7 @@ const MixedAutoSlider = () => {
         marginTop: "2rem",
         padding: "0.5rem 1rem",
         color: "white",
-        backgroundColor: "#207DFF", // Adjust color as needed
+        backgroundColor: "#DCB36D", // Adjust color as needed
         border: "none",
         cursor: "pointer",
         textDecoration: "none",

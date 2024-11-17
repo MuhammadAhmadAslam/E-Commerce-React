@@ -90,7 +90,7 @@ const LatestCollections = () => {
                 head1="LATEST"
                 head2="COLLECTIONS"
                 paragraph="Discover the Newest Trends and Timeless Classics"
-            />
+            /> 
             <main className="d-flex row-gap-3 flex-wrap mt-5" style={{justifyContent: "center" , alignItems: "center"}}>
                 {/* Conditional rendering based on data */}
                 {productsData.length > 0 ? (

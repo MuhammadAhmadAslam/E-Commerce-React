@@ -171,7 +171,7 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
               <img
                 className="text-lg font-bold ml-2"
                 src={logo}
-                style={{ color: "#ffff" , width: "100px" }}
+                style={{ color: "#ffff", width: "100px" }}
               />
             </Link>
 
@@ -181,10 +181,11 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
                 to="/"
                 className="nav-link-hover mx-3 hover:text-black transition duration-300"
                 style={{
-                  textDecoration: "none",
-                  fontSize: "15px",
-                  color: "#fff",
-                  paddingBottom: "5px",
+                  WebkitTextFillColor: "transparent",
+                  backgroundImage:
+                    "linear-gradient(270deg, #fff09e, #c3812a, #fff09e, #c3812a)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
                 }}
               >
                 Home
@@ -193,10 +194,11 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
                 to="/collection"
                 className="nav-link-hover mx-3 hover:text-black transition duration-300"
                 style={{
-                  textDecoration: "none",
-                  fontSize: "15px",
-                  color: "#fff",
-                  paddingBottom: "5px",
+                  WebkitTextFillColor: "transparent",
+                  backgroundImage:
+                    "linear-gradient(270deg, #fff09e, #c3812a, #fff09e, #c3812a)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
                 }}
               >
                 Shop
@@ -205,10 +207,11 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
                 to="/about"
                 className="nav-link-hover mx-3 hover:text-black transition duration-300"
                 style={{
-                  textDecoration: "none",
-                  fontSize: "15px",
-                  color: "#fff",
-                  paddingBottom: "5px",
+                  WebkitTextFillColor: "transparent",
+                  backgroundImage:
+                    "linear-gradient(270deg, #fff09e, #c3812a, #fff09e, #c3812a)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
                 }}
               >
                 About
@@ -217,10 +220,11 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
                 to="/contact"
                 className="nav-link-hover mx-3 hover:text-black transition duration-300"
                 style={{
-                  textDecoration: "none",
-                  fontSize: "15px",
-                  color: "#fff",
-                  paddingBottom: "5px",
+                  WebkitTextFillColor: "transparent",
+                  backgroundImage:
+                    "linear-gradient(270deg, #fff09e, #c3812a, #fff09e, #c3812a)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
                 }}
               >
                 Contact
@@ -229,10 +233,11 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
                 to="/blog"
                 className="nav-link-hover mx-3 hover:text-black transition duration-300"
                 style={{
-                  textDecoration: "none",
-                  fontSize: "15px",
-                  color: "#fff",
-                  paddingBottom: "5px",
+                  WebkitTextFillColor: "transparent",
+                  backgroundImage:
+                    "linear-gradient(270deg, #fff09e, #c3812a, #fff09e, #c3812a)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
                 }}
               >
                 Blog

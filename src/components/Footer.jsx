@@ -209,7 +209,7 @@ const Footer = () => {
 						data-bs-toggle="tooltip"
 						data-bs-placement="top"
 					>
-						Muzammil
+						Stop n Buy
 					</a>
 					- All Rights Reserved.
 				</div>
