@@ -34,6 +34,9 @@ import TrendingProducts from "./pages/TrendingProducts";
 import Header from "./components/Header";
 import SingleCategoryDetail from "./pages/SingleCategoryDetails";
 import Blog from "./pages/Blog";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import DelieveryPolicy from "./pages/DelieveryPolicy";
+import CustomerSupport from "./pages/CustomerSupport";
 
 function App() {
 	// Get current location
@@ -59,6 +62,9 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/collection" element={<Collection />} />
 					<Route path="/about" element={<About />} />
+					<Route path="/privacy-policy" element={<PrivacyPolicy />} />
+					<Route path="/exhangePolicy" element={<DelieveryPolicy />} />
+					<Route path="/support" element={<CustomerSupport />} />
 					<Route path="/blog" element={<Blog />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/admin-panel" element={<AdminPanel />} />

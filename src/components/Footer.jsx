@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 // Import Tooltip directly from Bootstrap
 import { Tooltip } from "bootstrap";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaPinterest } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
@@ -149,7 +149,7 @@ const Footer = () => {
 											fontSize: "28px"
 										}}
 									>
-										<FaFacebook />
+										<FaFacebook style={{color: "white"}}/>
 									</a>
 									<a
 										href="#"
@@ -169,7 +169,7 @@ const Footer = () => {
 												borderRadius: "5px" // add some border radius to see the gradient effect
 											}}
 										>
-											<FaInstagram style={{ color: "green" }} />
+											<FaInstagram style={{ color: "white" }} />
 										</span>
 									</a>
 									<a
@@ -185,7 +185,22 @@ const Footer = () => {
 											fontSize: "28px"
 										}}
 									>
-										<FaWhatsapp  style={{ color: "#25D366" }}/>
+										<FaWhatsapp  style={{ color: "#fff" }}/>
+									</a>
+									<a
+										href="#"
+										target="_blank"
+										title="Go To Facebook"
+										className=""
+										style={{
+											color: "white",
+											textDecoration: "none",
+											paddingBottom: "10px",
+											marginBottom: "2px",
+											fontSize: "28px"
+										}}
+									>
+										 <FaPinterest />
 									</a>
 								</li>
 							</ul>

@@ -1,8 +1,9 @@
 import React from "react";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaPinterest } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Header = () => {
   return (
     <header
@@ -87,7 +88,7 @@ const Header = () => {
             fontSize: "28px",
           }}
         >
-          <img src={"https://cdn-icons-png.flaticon.com/512/145/145808.png"} style={{ width: "30px", height: "30px" }} />
+        <FaPinterest />
         </a>
       </div>
     </header>
