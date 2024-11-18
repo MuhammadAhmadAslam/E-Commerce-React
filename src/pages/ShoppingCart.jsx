@@ -228,7 +228,7 @@ export default function ShoppingCart() {
               <div className="col-sm-12 col-md-6 d-flex flex-column justify-content-start" style={{ padding: "10px" }}>
                 <div className="d-flex justify-content-between align-items-center mb-2">
                   <strong>Total Amount:</strong>
-                  <span>PKR {calculateTotal().toFixed(2)}</span>
+                  <span>PKR {calculateTotal().toFixed(2) - 250}</span>
                 </div>
                 <div className="d-flex justify-content-between align-items-center mb-2">
                   <strong>Delivery Charges:</strong>
