@@ -34,7 +34,7 @@ const Header = () => {
             fontSize: "28px",
           }}
         >
-          <FaFacebook />
+          <FaFacebook style={{color: "white"}} />
         </a>
         <a
           href="#"
@@ -56,7 +56,7 @@ const Header = () => {
               borderRadius: "5px", // add some border radius to see the gradient effect
             }}
           >
-            <FaInstagram style={{ color: "#f09433" }} />
+            <FaInstagram style={{ color: "#fff" }} />
           </span>
         </a>
         <a
@@ -72,7 +72,22 @@ const Header = () => {
             fontSize: "28px",
           }}
         >
-          <FaWhatsapp style={{ color: "#25D366" }} />
+          <FaWhatsapp style={{ color: "#fff" }} />
+        </a>
+        <a
+          href="https://wa.me/923202279315"
+          target="_blank"
+          title="Go To Whatsapp"
+          className="header-icons"
+          style={{
+            color: "white",
+            textDecoration: "none",
+            paddingBottom: "10px",
+            marginBottom: "2px",
+            fontSize: "28px",
+          }}
+        >
+          <img src={"https://cdn-icons-png.flaticon.com/512/145/145808.png"} style={{ width: "30px", height: "30px" }} />
         </a>
       </div>
     </header>

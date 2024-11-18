@@ -91,7 +91,7 @@ const Footer = () => {
 									</NavLink>
 								</li>
 								<li className="c-gray p-1">Delivery</li>
-								<li className="c-gray p-1">Privacy Policy</li>
+								<li className="c-gray p-1"><a href="https://docs.google.com/document/d/1RKeJKjo9fsPwFkiLf9EHyUzEcoZisDUJW4JBh9nNwFU/edit?usp=sharing" target="blank">Easy Policy</a></li>
 							</ul>
 						</div>
 
