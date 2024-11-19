@@ -23,7 +23,7 @@ const Header = () => {
         style={{ display: "flex", justifyContent: "end", gap: "10px" }}
       >
         <a
-          href="#"
+          href="https://www.facebook.com/profile.php?id=61569012271702&rdid=ZL4AdlXhw70ZwCaT&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15HKGSYr7S%2F"
           target="_blank"
           title="Go To Facebook"
           className="header-icons"
@@ -76,7 +76,7 @@ const Header = () => {
           <FaWhatsapp style={{ color: "#fff" }} />
         </a>
         <a
-          href="https://wa.me/923202279315"
+          href="https://www.pinterest.com/stopsb/"
           target="_blank"
           title="Go To Whatsapp"
           className="header-icons"

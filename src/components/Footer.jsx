@@ -84,14 +84,28 @@ const Footer = () => {
 								</li>
 								<li>
 									<NavLink
+										to="/collection"
+										className="text-decoration-none c-gray d-inline-block p-1 px-5"
+									>
+										Shop
+									</NavLink>
+								</li>
+								<li>
+									<NavLink
 										to="/about"
 										className="text-decoration-none c-gray d-inline-block p-1 px-5"
 									>
 										About us
 									</NavLink>
 								</li>
-								<li className="c-gray p-1">Delivery</li>
-								<li className="c-gray p-1"><a href="https://docs.google.com/document/d/1RKeJKjo9fsPwFkiLf9EHyUzEcoZisDUJW4JBh9nNwFU/edit?usp=sharing" target="blank">Easy Policy</a></li>
+								<li>
+									<NavLink
+										to="/contact"
+										className="text-decoration-none c-gray d-inline-block p-1 px-5"
+									>
+										Contact us
+									</NavLink>
+								</li>
 							</ul>
 						</div>
 
@@ -137,7 +151,7 @@ const Footer = () => {
 									marginBottom: "2px"
 								}}>
 									<a
-										href="#"
+										href="https://www.facebook.com/profile.php?id=61569012271702&rdid=ZL4AdlXhw70ZwCaT&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F15HKGSYr7S%2F"
 										target="_blank"
 										title="Go To Facebook"
 										className=""
@@ -173,9 +187,9 @@ const Footer = () => {
 										</span>
 									</a>
 									<a
-										href="#"
+										href="https://wa.me/923202279315"
 										target="_blank"
-										title="Go To Facebook"
+										title="Go To Whatsapp"
 										className=""
 										style={{
 											color: "white",
@@ -188,9 +202,9 @@ const Footer = () => {
 										<FaWhatsapp  style={{ color: "#fff" }}/>
 									</a>
 									<a
-										href="#"
+										href="https://www.pinterest.com/stopsb/"
 										target="_blank"
-										title="Go To Facebook"
+										title="Go To Printrest"
 										className=""
 										style={{
 											color: "white",
