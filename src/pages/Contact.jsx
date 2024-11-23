@@ -5,7 +5,7 @@ import SubscriptionForm from "../components/SubscriptionForm";
 import HeaderDashed from "../components/HeaderDashed";
 import Features from "../components/Features";
 import { Link } from "react-router-dom";
-
+import { Helmet } from "react-helmet";
 const Contact = () => {
 	return (
 		<motion.div
@@ -14,6 +14,17 @@ const Contact = () => {
 			exit={{ opacity: 0 }}
 			className="contact-page text-center py-3 pt-5"
 		>
+		<Helmet>
+            <title>{"Contact Us"} - Stop n Buy</title>
+            <meta
+              name="description"
+              content={"Get in touch with us at Your Stop n Buy. We're here to assist you with any questions, feedback, or support inquiries."}
+            />
+            <meta
+              name="keywords"
+              content={"Contact Us, Your Stop N Buy, Customer Support, Get in Touch, Help Desk, Feedback, Assistance"}  
+            />
+          </Helmet>
 			<div className="container">
 				{/* Header with dashed style */}
 				<HeaderDashed head1="CONTACT" head2="US" classStyle="fw-normal fs-3" />

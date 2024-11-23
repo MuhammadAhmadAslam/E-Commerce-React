@@ -4,7 +4,7 @@ import mainImg from "../assets/about_img.png";
 import SubscriptionForm from "../components/SubscriptionForm";
 import DescribedImage from "../components/DescribedImage";
 import Features from "../components/Features";
-
+import { Helmet } from "react-helmet";
 const About = () => {
 	return (
 		<motion.div
@@ -13,6 +13,17 @@ const About = () => {
 			exit={{ opacity: 0 }}
 			className="about-page text-center py-3 pt-5"
 		>
+		<Helmet>
+            <title>{"About Us"} - Stop n Buy</title>
+            <meta
+              name="description"
+              content={"Learn more about Stop n Buy, our mission, values, and the team dedicated to serving you. Discover the story behind our brand."}
+            />
+            <meta
+              name="keywords"
+              content={"About Us, Stop n Buy, Our Mission, Company Values, Team, Brand Story"}  
+            />
+	     </Helmet>
 			<div className="container">
 				{/* Page header with dashed styling */}
 				<HeaderDashed head1="ABOUT" head2="US" classStyle="fw-normal fs-3" />

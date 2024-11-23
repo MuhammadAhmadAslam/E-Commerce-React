@@ -41,55 +41,68 @@
 
 // export default BestSeller;
 
-
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../Firebase/firebase";
 import HeaderDashed from "./HeaderDashed";
 import CollectionCard from "./CollectionCard";
 
 const BestSeller = () => {
-    const [productsData, setProductData] = useState([]);
-    
-    const gettingData = async () => {
-        try {
-            const querySnapshot = await getDocs(collection(db, "Trending Products"));
-            const productArray = [];
-            querySnapshot.forEach((doc) => {
-                productArray.push({ ...doc.data(), id: doc.id }); // Using doc.id instead of product._id
-            });
-            setProductData(productArray);
-        } catch (error) {
-            console.error("Error fetching products: ", error);
-        }
-    };
+  const [productsData, setProductData] = useState([]);
 
-    useEffect(() => {
-        gettingData();
-    }, []);
+  const gettingData = async () => {
+    try {
+      // Query Firestore to get documents where 'collectionName' matches the provided value
+      const q = query(
+        collection(db, "All Products"),
+        where("collectionName", "==", "Trending Products") // Adjust 'collectionName' to match your field name in Firestore
+      );
 
-    return (
-        <div className="best-seller py-5">
-            <HeaderDashed
-                head1="Trending "
-                head2="Products"
-                paragraph="Where Fashion Meets Function – Shop the Latest Trends"
-            />
-            <section>
-                <div className="row justify-content-center">
-                    {productsData.length > 0 ? (
-                        productsData.map((product) => (
-                            <div key={product.id} className="col-6 col-md-4 col-lg-3 col-xl-3 mt-3">
-                                <CollectionCard data={product} classPadding="px-3" />
-                            </div>
-                        ))
-                    ) : (
-                        <p>No trending products available right now.</p>
-                    )}
-                </div>
-            </section>
+      const querySnapshot = await getDocs(q);
+      const productArray = [];
+
+      querySnapshot.forEach((doc) => {
+        productArray.push({ ...doc.data(), id: doc.id }); // Include doc.id as a unique key
+      });
+
+      setProductData(productArray); // Assuming setProductData updates your state
+    } catch (error) {
+      console.error("Error fetching products: ", error);
+    }
+  };
+
+  console.log(productsData , "products data");
+  
+
+  useEffect(() => {
+    gettingData();
+  }, []);
+
+  return (
+    <div className="best-seller py-5">
+      <HeaderDashed
+        head1="Trending "
+        head2="Products"
+        paragraph="Where Fashion Meets Function – Shop the Latest Trends"
+      />
+      <section>
+        <div className="row justify-content-center">
+          {productsData.length > 0 ? (
+            productsData.map((product) => (
+              <div
+                key={product.id}
+                className="col-6 col-md-4 col-lg-3 col-xl-3 mt-3"
+              >
+                <CollectionCard data={product} classPadding="px-3" />
+              </div>
+            ))
+          ) : (
+            <p>No trending products available right now.</p>
+          )}
         </div>
-    );
+      </section>
+    </div>
+  );
 };
 
 export default BestSeller;

@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import Tables from '../components/Tables'
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../../Firebase/firebase';
 
 const TrendingProduct = () => {
 let arr = []
 let [data , setData] = useState([])
   let gettingAllProduct = async  () => {
-    onSnapshot(collection(db, "Trending Products"), (snapshot) => {
-      snapshot.forEach((doc) => {
-        console.log(doc.data());  
-       arr.push(doc.data())
+    try {
+      // Query Firestore to get documents where 'collectionName' matches the provided value
+      const q = query(
+        collection(db, "All Products"),
+        where("collectionName", "==", "Trending Products") // Adjust 'collectionName' to match your field name in Firestore
+      );
+
+      const querySnapshot = await getDocs(q);
+      const productArray = [];
+
+      querySnapshot.forEach((doc) => {
+        productArray.push({ ...doc.data(), id: doc.id }); // Include doc.id as a unique key
       });
-      setData(arr)
-    });
+
+      setData(productArray); // Assuming setProductData updates your state
+    } catch (error) {
+      console.error("Error fetching products: ", error);
+    }
   }
 
   useEffect(() => {

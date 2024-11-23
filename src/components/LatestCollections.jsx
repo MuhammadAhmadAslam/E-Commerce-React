@@ -56,61 +56,74 @@
 
 // export default memo(LatestCollections);
 
-
 import HeaderDashed from "./HeaderDashed";
 import CollectionCard from "./CollectionCard";
 import { useState, useEffect, memo } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../Firebase/firebase";
 
 const LatestCollections = () => {
-    const [productsData, setProductData] = useState([]);
-    
-    const gettingData = async () => {
-        try {
-            const querySnapshot = await getDocs(collection(db, "Latest Products"));
-            const productArray = [];
-            querySnapshot.forEach((doc) => {
-                productArray.push({ ...doc.data(), id: doc.id }); // Use doc.id as the key
-            });
-            setProductData(productArray);
-        } catch (error) {
-            console.error("Error fetching latest products: ", error);
-        }
-    };
+  const [productsData, setProductData] = useState([]);
 
-    useEffect(() => {
-        gettingData();
-    }, []);
+  const gettingData = async () => {
+    try {
+      // Query Firestore to get documents where 'collectionName' matches the provided value
+      const q = query(
+        collection(db, "All Products"),
+        where("collectionName", "==", "Latest Products") // Adjust 'collectionName' to match your field name in Firestore
+      );
 
-    return (
-        <section className="latest-collections mt-6">
-            {/* Header with title and description */}
-            <HeaderDashed
-                head1="LATEST"
-                head2="COLLECTIONS"
-                paragraph="Discover the Newest Trends and Timeless Classics"
-            /> 
-            <main className="d-flex row-gap-3 flex-wrap mt-5" style={{justifyContent: "center" , alignItems: "center"}}>
-                {/* Conditional rendering based on data */}
-                {productsData.length > 0 ? (
-                    productsData
-                        .sort((a, b) => {
-                            // Ensure date exists before sorting, otherwise use a default value (0)
-                            const dateA = a.date ? new Date(a.date) : 0;
-                            const dateB = b.date ? new Date(b.date) : 0;
-                            return dateB - dateA;
-                        })
-                        .slice(0, 10) // Limit to 10 items
-                        .map((product) => (
-                            <CollectionCard key={product.id} data={product} />
-                        ))
-                ) : (
-                    <p>No latest collections available at the moment.</p>
-                )}
-            </main>
-        </section>
-    );
+      const querySnapshot = await getDocs(q);
+      const productArray = [];
+
+      querySnapshot.forEach((doc) => {
+        productArray.push({ ...doc.data(), id: doc.id }); // Include doc.id as a unique key
+      });
+
+      setProductData(productArray); // Assuming setProductData updates your state
+    } catch (error) {
+      console.error("Error fetching products: ", error);
+    }
+  };
+
+  console.log(productsData , "product data");
+  
+
+  useEffect(() => {
+    gettingData();
+  }, []);
+
+  return (
+    <section className="latest-collections mt-6">
+      {/* Header with title and description */}
+      <HeaderDashed
+        head1="LATEST"
+        head2="COLLECTIONS"
+        paragraph="Discover the Newest Trends and Timeless Classics"
+      />
+      <main
+        className="d-flex row-gap-3 flex-wrap mt-5"
+        style={{ justifyContent: "center", alignItems: "center" }}
+      >
+        {/* Conditional rendering based on data */}
+        {productsData.length > 0 ? (
+          productsData
+            .sort((a, b) => {
+              // Ensure date exists before sorting, otherwise use a default value (0)
+              const dateA = a.date ? new Date(a.date) : 0;
+              const dateB = b.date ? new Date(b.date) : 0;
+              return dateB - dateA;
+            })
+            .slice(0, 10) // Limit to 10 items
+            .map((product) => (
+              <CollectionCard key={product.id} data={product} />
+            ))
+        ) : (
+          <p>No latest collections available at the moment.</p>
+        )}
+      </main>
+    </section>
+  );
 };
 
 export default memo(LatestCollections);

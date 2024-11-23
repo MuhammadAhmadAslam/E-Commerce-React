@@ -32,23 +32,45 @@ export default function Dashboard() {
   }
 
 
-  let getingLatestProduct = async  () => {
-    onSnapshot(collection(db, "Latest Products"), (snapshot) => {
-      setAllLatestLength(snapshot.size)
+  let getingLatestProduct = async () => {
+    // Define the query with the 'where' clause
+    const latestProductsQuery = query(
+      collection(db, "All Products"),
+      where("collectionName", "==", "Latest Products")
+    );
+  
+    // Listen to the query snapshot
+    onSnapshot(latestProductsQuery, (snapshot) => {
+      // Update the state with the size of the filtered documents
+      setAllLatestLength(snapshot.size);
+  
+      // Iterate through each document
       snapshot.forEach((doc) => {
+        console.log(doc.id, doc.data());
       });
     });
-  }
+  };
 
 
 
-  let getingTrendingProduct = async  () => {
-    onSnapshot(collection(db, "Trending Products"), (snapshot) => {
-      setAllTrendingProductsLength(snapshot.size , "trending product")
+  let getingTrendingProduct = async () => {
+    // Define the query with the 'where' clause
+    const latestProductsQuery = query(
+      collection(db, "All Products"),
+      where("collectionName", "==", "Trending Products")
+    );
+  
+    // Listen to the query snapshot
+    onSnapshot(latestProductsQuery, (snapshot) => {
+      // Update the state with the size of the filtered documents
+      setAllTrendingProductsLength(snapshot.size);
+  
+      // Iterate through each document
       snapshot.forEach((doc) => {
+        console.log(doc.id, doc.data());
       });
     });
-  }
+  };
 
 
   let gettingPendingOrder = async () => {

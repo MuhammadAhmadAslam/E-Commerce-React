@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { doc, deleteDoc, onSnapshot, collection } from "firebase/firestore";
+import { doc, deleteDoc, onSnapshot, collection, query, where } from "firebase/firestore";
 import { db } from '../../Firebase/firebase';
 import Swal from 'sweetalert2';
 
@@ -7,16 +7,29 @@ const Tables = ({ data, setData, name }) => {
 
   console.log(data);
 
-  useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, name), (snapshot) => {
+
+  const getDataWithQuery = async () => {
+    // Define the query with 'where' clause to filter documents by collectionName
+    const q = query(
+      collection(db, "All Products"),
+      where("collectionName", "==", name) // Filter by collectionName
+    );
+  
+    // Listen to the query snapshot
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       setData(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     });
-
+  
+    // Return unsubscribe function to stop listening when needed
     return unsubscribe;
+  };
+
+  useEffect(() => {
+   getDataWithQuery()
   }, []);
 
   async function deleteProduct(_id) {
-    await deleteDoc(doc(db, name, _id));
+    await deleteDoc(doc(db, "All Products", _id));
     await Swal.fire({
       title: 'Success!',
       text: 'Your Product Has Been Deleted SuccessFully.',
