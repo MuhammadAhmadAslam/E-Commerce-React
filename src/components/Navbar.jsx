@@ -144,7 +144,7 @@ import {
 import "../App.css";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
-import logo from "../../public/logo.png";
+import logo from "../../public/logo.jpg";
 const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
