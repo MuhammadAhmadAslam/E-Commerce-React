@@ -201,6 +201,7 @@ import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../../Firebase/firebase";
 import { StarFilled } from "@ant-design/icons";
 import { Helmet } from "react-helmet";
+import DOMPurify from "dompurify";
 const ProductDetails = () => {
   const { productId, collectionName } = useParams();
   const { productsData } = useContext(ShopContext);
@@ -321,7 +322,7 @@ const ProductDetails = () => {
               </span>
             </div>
             {/* Product Description */}
-            <em className="c-gray">{productData.description}</em>
+            <em className="c-gray">{productData.slogan}</em>
             {/* Select Size */}
             <br />
             {/* Add to Cart Button */}
@@ -376,8 +377,10 @@ const ProductDetails = () => {
               Reviews ({productData.reviews})
             </li>
           </ul>
-          <div className="description-text border-gray p-3 c-gray">
-            {productData.description}
+          <div className="description-text border-gray p-3 c-gray" dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(productData.description),
+        }}>
+            
           </div>
         </article>
         {/* Related Products */}

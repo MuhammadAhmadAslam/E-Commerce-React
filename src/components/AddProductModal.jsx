@@ -1,7 +1,3 @@
-
-
-
-
 // import React, { useState } from "react";
 // import { Modal } from "antd";
 // import { CloseOutlined } from "@ant-design/icons";
@@ -40,7 +36,6 @@
 //     const files = Array.from(event.target.files);
 //     setImageFiles(files);
 //   };
-
 
 //   console.log(categoryForWebsiteDisplay);
 
@@ -87,8 +82,6 @@
 
 //       const collectionRef = collection(firestore, categoryForWebsiteDisplay);    //Updated Firestore reference
 //       const collectionRef2 = collection(firestore, category);    //Updated Firestore reference
-
-
 
 //       // Add product data to Firestore
 //       const docRef = doc(collectionRef);
@@ -273,28 +266,38 @@
 //     </Modal>
 //   );
 
-
-
-
 // };
 
 // export default AddProductModal;
 
-
 import React, { useState } from "react";
 import { Modal } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import "react-quill/dist/quill.snow.css";
 import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
 import { app } from "../../Firebase/firebase";
 import { ProductCategry } from "../pages/Home";
-
+import ReactQuill from "react-quill";
 const AddProductModal = ({ isVisible, onClose }) => {
   const categoryWebsite = [
     { Category: "All Products" },
     { Category: "Trending Products" },
     { Category: "Latest Products" },
   ];
+
+  // const quillModules = {
+  //   toolbar: [
+  //     ["bold", "italic", "underline"],
+  //     [{ list: "ordered" }, { list: "bullet" }],
+  //     ["link", "image"],
+  //   ],
+  // };
 
   const [title, setTitle] = useState("");
   const [slogan, setSlogan] = useState("");
@@ -303,7 +306,9 @@ const AddProductModal = ({ isVisible, onClose }) => {
   const [metaDescription, setMetaDescription] = useState("");
   const [reviews, setReviews] = useState("");
   const [category, setCategory] = useState(ProductCategry[0].Category);
-  const [categoryForWebsiteDisplay, setCategoryForWebsiteDisplay] = useState(categoryWebsite[0].Category);
+  const [categoryForWebsiteDisplay, setCategoryForWebsiteDisplay] = useState(
+    categoryWebsite[0].Category
+  );
   const [keywords, setKeywords] = useState(""); // New state for keywords input
   const [imageFiles, setImageFiles] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -325,12 +330,15 @@ const AddProductModal = ({ isVisible, onClose }) => {
         uploadTask.on(
           "state_changed",
           (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log(`Upload is ${progress}% done`);
           },
           (error) => reject(error),
           () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => resolve(downloadURL));
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
+              resolve(downloadURL)
+            );
           }
         );
       });
@@ -407,41 +415,70 @@ const AddProductModal = ({ isVisible, onClose }) => {
       centered
     >
       <form onSubmit={handleSubmit}>
-
-      <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="title" style={{ color: "#9B80FD", fontSize: "21px" }}>Title</label>
+        <div style={{ marginBottom: "10px" }}>
+          <label htmlFor="title" style={{ color: "#9B80FD", fontSize: "21px" }}>
+            Title
+          </label>
           <input
             placeholder="Enter a Title"
             type="text"
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            style={{ width: "100%", border: "1px solid #9B80FD", outline: "none", height: "40px", color: "black", padding: "10px" }}
+            style={{
+              width: "100%",
+              border: "1px solid #9B80FD",
+              outline: "none",
+              height: "40px",
+              color: "black",
+              padding: "10px",
+            }}
           />
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="slogan" style={{ color: "#9B80FD", fontSize: "21px" }}>Slogan</label>
+          <label
+            htmlFor="slogan"
+            style={{ color: "#9B80FD", fontSize: "21px" }}
+          >
+            Slogan
+          </label>
           <input
             placeholder="Enter a Slogan"
             type="text"
             id="slogan"
             value={slogan}
             onChange={(e) => setSlogan(e.target.value)}
-            style={{ width: "100%", border: "1px solid #9B80FD", outline: "none", height: "40px", color: "black", padding: "10px" }}
+            style={{
+              width: "100%",
+              border: "1px solid #9B80FD",
+              outline: "none",
+              height: "40px",
+              color: "black",
+              padding: "10px",
+            }}
           />
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="price" style={{ color: "#9B80FD", fontSize: "21px" }}>Price</label>
+          <label htmlFor="price" style={{ color: "#9B80FD", fontSize: "21px" }}>
+            Price
+          </label>
           <input
             placeholder="Enter Price in Numbers"
             type="number"
             id="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            style={{ width: "100%", border: "1px solid #9B80FD", outline: "none", height: "40px", color: "black", padding: "10px" }}
+            style={{
+              width: "100%",
+              border: "1px solid #9B80FD",
+              outline: "none",
+              height: "40px",
+              color: "black",
+              padding: "10px",
+            }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        {/* <div style={{ marginBottom: "10px" }}>
           <label htmlFor="description" style={{ color: "#9B80FD", fontSize: "21px" }}>Description</label>
           <textarea
             placeholder="Enter a Description"
@@ -450,62 +487,138 @@ const AddProductModal = ({ isVisible, onClose }) => {
             onChange={(e) => setDescription(e.target.value)}
             style={{ width: "100%", border: "1px solid #9B80FD", outline: "none", height: "150px", resize: "none", color: "black", padding: "10px" }}
           ></textarea>
-        </div>
+        </div> */}
+
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="reviews" style={{ color: "#9B80FD", fontSize: "21px" }}>Reviews</label>
+          <label
+            htmlFor="description"
+            style={{ color: "#9B80FD", fontSize: "21px" }}
+          >
+            Description
+          </label>
+          <div
+            style={{
+              border: "1px solid #9B80FD",
+              borderRadius: "4px",
+              overflow: "hidden",
+            }}
+          >
+            <ReactQuill
+              theme="snow"
+              value={description}
+              onChange={setDescription}
+              placeholder="Enter a detailed product description"
+              style={{
+                height: "450px", // Adjust as needed
+                backgroundColor: "white",
+                color: "black",
+                fontSize: "14px",
+              }}
+              
+            />
+          </div>
+        </div>
+
+        <div style={{ marginBottom: "10px" }}>
+          <label
+            htmlFor="reviews"
+            style={{ color: "#9B80FD", fontSize: "21px" }}
+          >
+            Reviews
+          </label>
           <input
             placeholder="Enter Reviews in Numbers"
             type="number"
             id="reviews"
             value={reviews}
             onChange={(e) => setReviews(e.target.value)}
-            style={{ width: "100%", border: "1px solid #9B80FD", outline: "none", height: "40px", color: "black", padding: "10px" }}
+            style={{
+              width: "100%",
+              border: "1px solid #9B80FD",
+              outline: "none",
+              height: "40px",
+              color: "black",
+              padding: "10px",
+            }}
           />
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Category For Website Display</label>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>
+            Category For Website Display
+          </label>
           <select
             value={categoryForWebsiteDisplay}
             onChange={(e) => setCategoryForWebsiteDisplay(e.target.value)}
-            style={{ width: "100%", border: "1px solid #9B80FD", outline: "none", height: "40px", color: "black", padding: "10px" }}
+            style={{
+              width: "100%",
+              border: "1px solid #9B80FD",
+              outline: "none",
+              height: "40px",
+              color: "black",
+              padding: "10px",
+            }}
           >
-            {
-              categoryWebsite.map((category) => (
-                <option value={category.Category}>{category.Category}</option>
-              ))
-            }
+            {categoryWebsite.map((category) => (
+              <option value={category.Category}>{category.Category}</option>
+            ))}
           </select>
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="category" style={{ color: "#9B80FD", fontSize: "21px" }}>Category</label>
+          <label
+            htmlFor="category"
+            style={{ color: "#9B80FD", fontSize: "21px" }}
+          >
+            Category
+          </label>
           <select
             placeholder="Enter A Category Of Product"
             type="text"
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            style={{ width: "100%", border: "1px solid #9B80FD", outline: "none", height: "40px", color: "black", padding: "10px" }}
+            style={{
+              width: "100%",
+              border: "1px solid #9B80FD",
+              outline: "none",
+              height: "40px",
+              color: "black",
+              padding: "10px",
+            }}
           >
-            {
-              ProductCategry.map((product, index) => (
-                <option value={product.Category} key={index}>{product.Category}</option>
-              ))
-            }
+            {ProductCategry.map((product, index) => (
+              <option value={product.Category} key={index}>
+                {product.Category}
+              </option>
+            ))}
           </select>
         </div>
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="image" style={{ color: "#9B80FD", fontSize: "21px" }}>Images</label>
+          <label htmlFor="image" style={{ color: "#9B80FD", fontSize: "21px" }}>
+            Images
+          </label>
           <input
             type="file"
             id="image"
             multiple
             onChange={handleImageChange}
-            style={{ width: "100%", border: "1px solid #9B80FD", outline: "none", height: "40px", color: "black", padding: "10px" }}
+            style={{
+              width: "100%",
+              border: "1px solid #9B80FD",
+              outline: "none",
+              height: "40px",
+              color: "black",
+              padding: "10px",
+            }}
           />
         </div>
 
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="keywords" style={{ color: "#9B80FD", fontSize: "21px" }}>Keywords</label>
+          <label
+            htmlFor="keywords"
+            style={{ color: "#9B80FD", fontSize: "21px" }}
+          >
+            Keywords
+          </label>
           <input
             placeholder="Enter keywords separated by commas"
             type="text"
@@ -523,11 +636,15 @@ const AddProductModal = ({ isVisible, onClose }) => {
           />
         </div>
 
-        
         {/* Existing input fields */}
         {/* Meta Description Field */}
         <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="metaDescription" style={{ color: "#9B80FD", fontSize: "21px" }}>Meta Description</label>
+          <label
+            htmlFor="metaDescription"
+            style={{ color: "#9B80FD", fontSize: "21px" }}
+          >
+            Meta Description
+          </label>
           <textarea
             placeholder="Enter a meta description for SEO"
             id="metaDescription"
