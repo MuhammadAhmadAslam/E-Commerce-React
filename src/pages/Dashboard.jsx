@@ -1,13 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AddProductModal from '../components/AddProductModal';
 import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
-import { db } from '../../Firebase/firebase';
+import { auth, db } from '../../Firebase/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 export default function Dashboard() {
 
   const [isAddProductModalVisible, setAddProductModalVisible] = useState(false);
+  let navigate = useNavigate()
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
 
+        const uid = user.uid;
+        console.log(user , "user logged in");
+        // ...
+      } else {
+        navigate("/")
+        // User is signed out
+        // ...
+      }
+    })
+  } ,[])
   const showAddProductModal = () => {
     setAddProductModalVisible(true);
   };

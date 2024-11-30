@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Tables from '../components/Tables'
 import { collection, getDocs, onSnapshot, query, where } from 'firebase/firestore';
-import { db } from '../../Firebase/firebase';
+import { auth, db } from '../../Firebase/firebase';
+import { useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const LatestProduct = () => {
   let arr = []
@@ -30,6 +32,24 @@ const LatestProduct = () => {
   useEffect(() => {
     gettingAllProduct()
   }, [])
+
+  let navigate = useNavigate()
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+
+        const uid = user.uid;
+        console.log(user , "user logged in");
+        // ...
+      } else {
+        navigate("/")
+        // User is signed out
+        // ...
+      }
+    })
+  } ,[])
 
   console.log(data);
 

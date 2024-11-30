@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import OrderDetail from '../components/OrderDetail'
 import { collection, onSnapshot } from 'firebase/firestore'
-import { db } from '../../Firebase/firebase'
+import { auth, db } from '../../Firebase/firebase'
+import { useNavigate } from 'react-router-dom'
+import { onAuthStateChanged } from 'firebase/auth'
 
 const PendingOrders = () => {
 
@@ -21,6 +23,24 @@ const PendingOrders = () => {
   useEffect(() => {
       gettingPendingOrder()
   } , [])
+
+  let navigate = useNavigate()
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+
+        const uid = user.uid;
+        console.log(user , "user logged in");
+        // ...
+      } else {
+        navigate("/")
+        // User is signed out
+        // ...
+      }
+    })
+  } ,[])
 
 
   console.log(order);

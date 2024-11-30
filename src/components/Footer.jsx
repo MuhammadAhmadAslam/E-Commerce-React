@@ -117,7 +117,7 @@ const Footer = () => {
 								WebkitBackgroundClip: "text",
 								backgroundClip: "text"
 							}}>GET IN TOUCH</h3>
-							<ul className="d-flex flex-column align-items-center align-items-lg-start ps-0 gap-2">
+							<ul className="d-flex flex-column align-items-center align-items-lg-start ps-0 gap-6">
 								<li className="nav-link-hover" style={{
 									color: "white",
 									textDecoration: "none",
@@ -211,7 +211,8 @@ const Footer = () => {
 											textDecoration: "none",
 											paddingBottom: "10px",
 											marginBottom: "2px",
-											fontSize: "28px"
+											fontSize: "28px",
+											marginLeft: "10px"
 										}}
 									>
 										 <FaPinterest />

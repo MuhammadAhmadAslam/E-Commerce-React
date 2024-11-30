@@ -1,41 +1,149 @@
-import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { motion } from "framer-motion";
-import HeaderDashed from "../components/HeaderDashed";
+// import React, { useState } from "react";
+// import { Container, Form, Button, Card, Alert } from "react-bootstrap";
+// import { useNavigate } from "react-router-dom";
+// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../../Firebase/firebase";
+// const AdminLogin = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [error, setError] = useState("");
+//   const navigate = useNavigate();
+
+//   const handleLogin = (e) => {
+//     e.preventDefault();
+//     setError("");
+//     createUserWithEmailAndPassword(auth, email, password)
+//       .then((userCredential) => {
+//         const user = userCredential.user;
+//         console.log("user signup successfully", user);
+//         // ...
+//       })
+//       .catch((error) => {
+//         console.log("user signup error", error);
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//         // ..
+//       });
+//   };
+
+//   return (
+//     <Container
+//       className="d-flex align-items-center justify-content-center"
+//       style={{ minHeight: "50vh" }}
+//     >
+//       <Card style={{ width: "100%", maxWidth: "400px" }}>
+//         <Card.Body>
+//           <Card.Title className="text-center mb-4">
+//             <h2 style={{ color: "#3D3D3D" }}>Admin Login</h2>
+//           </Card.Title>
+//           {error && <Alert variant="danger">{error}</Alert>}
+//           <Form onSubmit={handleLogin}>
+//             <Form.Group className="mb-3" controlId="formBasicEmail">
+//               <Form.Label>Email address</Form.Label>
+//               <Form.Control
+//                 type="email"
+//                 placeholder="Enter email"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//                 required
+//               />
+//             </Form.Group>
+
+//             <Form.Group className="mb-3" controlId="formBasicPassword">
+//               <Form.Label>Password</Form.Label>
+//               <Form.Control
+//                 type="password"
+//                 placeholder="Password"
+//                 value={password}
+//                 onChange={(e) => setPassword(e.target.value)}
+//                 required
+//               />
+//             </Form.Group>
+
+//             <Button variant="dark" type="submit" className="w-100">
+//               Login
+//             </Button>
+//           </Form>
+//         </Card.Body>
+//       </Card>
+//     </Container>
+//   );
+// };
+
+// export default AdminLogin;
+
+import React, { useState } from "react";
+import { Container, Form, Button, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-const AdminPanel = () => {
-	const [Password, setPassword] = useState('');
-	const [email, setEmail] = useState('')
-	const navigate = useNavigate()
-	const checkCredetinal = () => {
-		if (email == "Hello Admin" && Password == "myE-Commerce123@") {
-			alert('ok ki report hae')
-			navigate('/dashboard/order/admin')
-		}else{
-			alert('sahi kar')
-		}
-	};
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../Firebase/firebase";
 
+const AdminLogin = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
+  console.log("Auth instance: ", auth);
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setError("");
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+	 console.log(user);
+	 navigate("/dashboard/admin");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+	 setError(errorMessage);
+      });
+  };
 
-	return (
-		<section>
-
-		<div className="mt-5">
-
-			<HeaderDashed head1="Log" head2="IN" />
-		</div>
-			<div className="d-flex align-items-center justify-content-center flex-column w-100 mt-5" style={{ height: "30vh" }} >
-				<input type="text" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Enter A Email" className="md-w-full" style={{ width: "40%", height: "40px", outline: "none" }} />
-				<br />
-				<input type="text" value={Password} onChange={(event) => setPassword(event.target.value)} placeholder="Enter A Password" style={{ width: "40%", height: "40px", outline: "none" }} />
-				<br />
-				<button onClick={checkCredetinal} style={{ border: "none", backgroundColor: "#3D3D3D", color: "white", padding: "7px", width: "80px" }}>Login</button>
-			</div>
-		</section>
-	);
+  return (
+    <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: "50vh" }}
+    >
+      <Card style={{ width: "100%", maxWidth: "400px" }}>
+        <Card.Body>
+          <Card.Title className="text-center mb-4">
+            <h2 style={{ color: "#3D3D3D" }}>Admin Login</h2>
+          </Card.Title>
+          {error && <Alert variant="danger">{error}</Alert>}
+          <Form onSubmit={handleLogin}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Button variant="dark" type="submit" className="w-100">
+              Login
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </Container>
+  );
 };
 
-export default AdminPanel;
+export default AdminLogin;
